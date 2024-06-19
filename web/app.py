@@ -1,12 +1,11 @@
-from flask import Flask
+from flask import Flask, jsonify
 from attack import attack
 
 app = Flask(__name__)
 
-
-@app.route('/')
-def hello_world():  # put application's code here
-     return str(attack("7a1b41e956dd449f9d94db7ae838faad")["status"])
+@app.route('/attack/<apiKey>', methods=['GET'])
+def hello_world(apiKey):
+    return jsonify(attack(apiKey))
 
 
 if __name__ == '__main__':
